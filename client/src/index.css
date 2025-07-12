@@ -1,0 +1,324 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Futuristic Light Theme */
+  --background: hsl(220, 40%, 98%);
+  --foreground: hsl(220, 20%, 15%);
+  --muted: hsl(210, 40%, 92%);
+  --muted-foreground: hsl(215, 16%, 47%);
+  --popover: hsl(220, 50%, 95%);
+  --popover-foreground: hsl(220, 20%, 15%);
+  --card: hsl(220, 50%, 95%);
+  --card-foreground: hsl(220, 20%, 15%);
+  --border: hsl(220, 30%, 85%);
+  --input: hsl(220, 30%, 90%);
+  --primary: hsl(260, 80%, 65%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(200, 50%, 90%);
+  --secondary-foreground: hsl(220, 20%, 25%);
+  --accent: hsl(280, 70%, 60%);
+  --accent-foreground: hsl(0, 0%, 100%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --ring: hsl(260, 80%, 65%);
+  --radius: 0.75rem;
+  
+  /* Futuristic accents */
+  --glow-primary: hsl(260, 80%, 65%);
+  --glow-secondary: hsl(200, 80%, 55%);
+  --gradient-from: hsl(260, 80%, 65%);
+  --gradient-to: hsl(200, 80%, 55%);
+}
+
+.dark {
+  /* Futuristic Dark Theme */
+  --background: hsl(220, 25%, 8%);
+  --foreground: hsl(220, 15%, 92%);
+  --muted: hsl(220, 25%, 15%);
+  --muted-foreground: hsl(215, 20%, 65%);
+  --popover: hsl(220, 25%, 12%);
+  --popover-foreground: hsl(220, 15%, 92%);
+  --card: hsl(220, 25%, 12%);
+  --card-foreground: hsl(220, 15%, 92%);
+  --border: hsl(220, 25%, 20%);
+  --input: hsl(220, 25%, 18%);
+  --primary: hsl(260, 80%, 70%);
+  --primary-foreground: hsl(220, 25%, 8%);
+  --secondary: hsl(220, 25%, 18%);
+  --secondary-foreground: hsl(220, 15%, 85%);
+  --accent: hsl(280, 70%, 65%);
+  --accent-foreground: hsl(220, 25%, 8%);
+  --destructive: hsl(0, 75%, 55%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --ring: hsl(260, 80%, 70%);
+  --radius: 0.75rem;
+  
+  /* Futuristic accents */
+  --glow-primary: hsl(260, 80%, 70%);
+  --glow-secondary: hsl(200, 80%, 60%);
+  --gradient-from: hsl(260, 80%, 70%);
+  --gradient-to: hsl(200, 80%, 60%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+}
+
+@layer components {
+  /* Futuristic UI Components */
+  .futuristic-card {
+    @apply backdrop-blur-sm border rounded-xl shadow-lg;
+    background: linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--card) / 0.8) 100%);
+    border-color: hsl(var(--border) / 0.5);
+  }
+  
+  .futuristic-button {
+    @apply relative overflow-hidden bg-gradient-to-r from-primary to-accent text-primary-foreground;
+    background: linear-gradient(135deg, hsl(var(--gradient-from)) 0%, hsl(var(--gradient-to)) 100%);
+    transition: all 0.3s ease;
+  }
+  
+  .futuristic-button:hover {
+    @apply scale-105 shadow-lg;
+    box-shadow: 0 10px 30px hsl(var(--glow-primary) / 0.3);
+  }
+  
+  .glow-effect {
+    @apply relative;
+  }
+  
+  .glow-effect::before {
+    content: '';
+    @apply absolute inset-0 rounded-lg opacity-30 blur-sm;
+    background: linear-gradient(135deg, hsl(var(--glow-primary)) 0%, hsl(var(--glow-secondary)) 100%);
+    z-index: -1;
+  }
+  
+  .futuristic-nav {
+    @apply backdrop-blur-md border-b;
+    background: linear-gradient(135deg, hsl(var(--card) / 0.9) 0%, hsl(var(--card) / 0.7) 100%);
+    border-color: hsl(var(--border) / 0.5);
+  }
+  
+  .cyber-grid {
+    background-image: 
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+  
+  .dark .cyber-grid {
+    background-image: 
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  }
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 2s infinite;
+}
+
+/* Glass effect utility */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass-effect {
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(71, 85, 105, 0.3);
+}
+
+/* Hover effects */
+.hover-lift {
+  transition: transform 0.2s ease-in-out;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+/* Custom scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground));
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary));
+}
+
+/* Skill category colors */
+.skill-tech {
+  @apply bg-blue-50 text-blue-700 border-blue-200;
+}
+
+.skill-design {
+  @apply bg-pink-50 text-pink-700 border-pink-200;
+}
+
+.skill-music {
+  @apply bg-purple-50 text-purple-700 border-purple-200;
+}
+
+.skill-language {
+  @apply bg-green-50 text-green-700 border-green-200;
+}
+
+.skill-business {
+  @apply bg-orange-50 text-orange-700 border-orange-200;
+}
+
+.skill-creative {
+  @apply bg-indigo-50 text-indigo-700 border-indigo-200;
+}
+
+.skill-sports {
+  @apply bg-red-50 text-red-700 border-red-200;
+}
+
+.skill-academic {
+  @apply bg-yellow-50 text-yellow-700 border-yellow-200;
+}
+
+.dark .skill-tech {
+  @apply bg-blue-900/20 text-blue-300 border-blue-800;
+}
+
+.dark .skill-design {
+  @apply bg-pink-900/20 text-pink-300 border-pink-800;
+}
+
+.dark .skill-music {
+  @apply bg-purple-900/20 text-purple-300 border-purple-800;
+}
+
+.dark .skill-language {
+  @apply bg-green-900/20 text-green-300 border-green-800;
+}
+
+.dark .skill-business {
+  @apply bg-orange-900/20 text-orange-300 border-orange-800;
+}
+
+.dark .skill-creative {
+  @apply bg-indigo-900/20 text-indigo-300 border-indigo-800;
+}
+
+.dark .skill-sports {
+  @apply bg-red-900/20 text-red-300 border-red-800;
+}
+
+.dark .skill-academic {
+  @apply bg-yellow-900/20 text-yellow-300 border-yellow-800;
+}
+
+/* Status indicators */
+.status-pending {
+  @apply bg-yellow-100 text-yellow-800 border-yellow-300;
+}
+
+.status-accepted {
+  @apply bg-green-100 text-green-800 border-green-300;
+}
+
+.status-rejected {
+  @apply bg-red-100 text-red-800 border-red-300;
+}
+
+.status-completed {
+  @apply bg-blue-100 text-blue-800 border-blue-300;
+}
+
+.status-cancelled {
+  @apply bg-gray-100 text-gray-800 border-gray-300;
+}
+
+.dark .status-pending {
+  @apply bg-yellow-900/20 text-yellow-300 border-yellow-800;
+}
+
+.dark .status-accepted {
+  @apply bg-green-900/20 text-green-300 border-green-800;
+}
+
+.dark .status-rejected {
+  @apply bg-red-900/20 text-red-300 border-red-800;
+}
+
+.dark .status-completed {
+  @apply bg-blue-900/20 text-blue-300 border-blue-800;
+}
+
+.dark .status-cancelled {
+  @apply bg-gray-900/20 text-gray-300 border-gray-800;
+}
+
+/* Loading states */
+.loading-shimmer {
+  background: linear-gradient(90deg, 
+    hsl(var(--muted)) 0%, 
+    hsl(var(--muted-foreground) / 0.1) 50%, 
+    hsl(var(--muted)) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Responsive utilities */
+@media (max-width: 640px) {
+  .mobile-stack {
+    @apply flex-col space-y-4 space-x-0;
+  }
+  
+  .mobile-full {
+    @apply w-full;
+  }
+}
